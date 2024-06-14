@@ -9,6 +9,7 @@ import Projects from './pages/Projects';
 import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import Header from './component/Header';
+import Footer1 from './component/Footer';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
       <Route path="/projects" element={<Projects />} />
       <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
+    <Footer1 />
     
     
     
