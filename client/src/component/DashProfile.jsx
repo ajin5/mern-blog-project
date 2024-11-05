@@ -3,9 +3,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {getStorage, ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage'
 import { app } from '../firebase'
-import {updateStart, updateSuccess, updateFailure, deleteUserStart, deleteUserSuccess, deleteUserFailure} from '../redux/user/userSlice'
+import {updateStart, updateSuccess, updateFailure, deleteUserStart, deleteUserSuccess, deleteUserFailure, signoutSuccess} from '../redux/user/userSlice'
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
-import { navigate } from 'react-router-dom'
+
 
 export default function DashProfile() {
   const {currentUser,error, loading} = useSelector((state)=>state.user)
@@ -144,6 +144,25 @@ const handleDeleteUser = async ()=>{
   
 
 }
+const handleSignout = async()=>{
+  try{
+    const res = await fetch('/api/user/signout', {
+      method:'POST',
+    });
+    const data = res.json();
+    if(!res.ok){
+      console.log(data.message)
+    }else{
+      dispatch(signoutSuccess())
+
+    }
+
+  }catch(error){
+    console.log(error.message)
+
+  }
+}
+
 return (
   <div className='max-w-lg mx-auto p-3 w-full'>
       <h1 className='my-7 text-center font-medium'>Dashprofile</h1>
@@ -169,7 +188,7 @@ return (
       
       <div className='flex justify-between text-red-500 mt-5'>
         <span onClick = {()=>setShowModal(true)}className='cursor-pointer'>Delete Account</span>
-        <span className='cursor-pointer'>Signout</span>
+        <span onClick = {handleSignout}className='cursor-pointer'>Signout</span>
       </div>
       {updateUserSuccess && (
         <Alert color='success' className='mt-5'>

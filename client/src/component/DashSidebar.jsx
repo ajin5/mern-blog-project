@@ -4,6 +4,8 @@ import { BsArrow90DegRight } from 'react-icons/bs'
 import { FaHospitalUser } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
+import { signoutSuccess } from '../redux/user/userSlice'
+
 
 export default function DashSlidebar() {
   const location = useLocation();
@@ -17,6 +19,24 @@ export default function DashSlidebar() {
       setTab(tabFromUrl);
     }
   }, [location.search]);
+  const handleSignout = async()=>{
+    try{
+      const res = await fetch('/api/user/signout', {
+        method:'POST',
+      });
+      const data = res.json();
+      if(!res.ok){
+        console.log(data.message)
+      }else{
+        dispatch(signoutSuccess())
+  
+      }
+  
+    }catch(error){
+      console.log(error.message)
+  
+    }
+  }
   return (
     <Sidebar>
       <Sidebar.Items>
@@ -26,7 +46,7 @@ export default function DashSlidebar() {
             profile
           </Sidebar.Item>  
           </Link>
-          <Sidebar.Item icon={BsArrow90DegRight}>
+          <Sidebar.Item icon={BsArrow90DegRight} onClick={handleSignout}>
             Sign Out
           </Sidebar.Item>  
         </Sidebar.ItemGroup>
