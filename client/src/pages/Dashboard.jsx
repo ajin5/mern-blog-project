@@ -24,6 +24,8 @@ export default function Dashboard() {
     </div>
     {/* {profile} */}
     {tab === 'profile'&& <DashProfile />}
+    {/* {Posts} */}
+    {tab === 'posts' && <DashPosts />}
     </div>
   )
 }

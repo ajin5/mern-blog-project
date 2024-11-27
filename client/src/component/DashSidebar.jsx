@@ -5,6 +5,7 @@ import { FaHospitalUser } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import { signoutSuccess } from '../redux/user/userSlice'
+import { HiDocumentText } from 'react-icons/hi'
 
 
 export default function DashSlidebar() {
@@ -42,10 +43,22 @@ export default function DashSlidebar() {
       <Sidebar.Items>
         <Sidebar.ItemGroup>
           <Link to='/dashboard?tab=profile'>
-          <Sidebar.Item active={tab === 'profile'} icon={FaHospitalUser} label={'user'} labelColor={'dark'} as='div'>
+          <Sidebar.Item active={tab === 'profile'} icon={FaHospitalUser} label={currentUser.isAdmin?'Admin':'User'} labelColor={'dark'} as='div'>
             profile
           </Sidebar.Item>  
           </Link>
+          {currentUser.isAdmin &&(
+             <Link to='/dashboard?tab=posts'>
+             <Sidebar.Item active={tab==='posts'}
+             icon= {HiDocumentText}
+             as='div'>
+               Posts
+             </Sidebar.Item>
+             
+             </Link>
+
+          )}
+         
           <Sidebar.Item icon={BsArrow90DegRight} onClick={handleSignout}>
             Sign Out
           </Sidebar.Item>  
