@@ -5,7 +5,7 @@ import { FaHospitalUser } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import { signoutSuccess } from '../redux/user/userSlice'
-import { HiDocumentText } from 'react-icons/hi'
+import { HiDocumentText, HiOutlineUserGroup } from 'react-icons/hi'
 
 
 export default function DashSlidebar() {
@@ -55,7 +55,16 @@ export default function DashSlidebar() {
                Posts
              </Sidebar.Item>
              
-             </Link>
+             </Link>)}
+              {currentUser.isAdmin &&(
+                <Link to='/dashboard?tab=users'>
+                <Sidebar.Item active={tab==='users'}
+                icon= {HiOutlineUserGroup}
+                as='div'>
+                  Users
+                </Sidebar.Item>
+                
+                </Link>
 
           )}
          
