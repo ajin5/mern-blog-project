@@ -13,6 +13,7 @@ import PrivateRoute from "./component/PrivateRoute";
 import OnlyAdminPrivateRoute from "./component/OnlyAdminPrivateRoute";
 import CreatePost from "./pages/Createpost";
 import UpdatePost from "./pages/Updatepost";
+import PostPage from "./pages/PostPage";
 
 
 
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/create-post" element={<CreatePost />} />
           <Route path='/update-post/:postId' element={<UpdatePost />} />
         </Route>
+        <Route path='/post/:postslug' element={<PostPage />} />
       </Routes>
       <Footer1 />
     </BrowserRouter>
