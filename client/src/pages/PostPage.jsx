@@ -2,6 +2,7 @@ import { Button, Spinner } from 'flowbite-react';
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import CallToAction from '../component/CallToAction';
+import CommentSection from '../component/CommentSection';
 
 export default function PostPage() {
     const {postslug} = useParams()
@@ -72,7 +73,12 @@ return (
       <div className='max-w-4xl mx-auto w-full'>
         <CallToAction />
       </div>
-      {/* <CommentSection postId={post._id} /> */}
+      <CommentSection postId={post._id} />
+      <div>
+      
+
+      </div>
+      
 
       {/* <div className='flex flex-col justify-center items-center mb-5'>
         <h1 className='text-xl mt-5'>Recent articles</h1>
